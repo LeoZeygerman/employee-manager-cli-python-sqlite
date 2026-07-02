@@ -21,13 +21,15 @@ def create_base():
 
 def add_staff(worker):
     with connect() as con:
+        con.row_factory = sq.Row
         cur = con.cursor()
         cur.execute('''INSERT INTO staff(name, last_name, age, post, salary) VALUES(?,?,?,?,?)''', (worker.name, worker.last_name, worker.age, worker.post, worker.salary)) 
 
 def get_all():
+    workers = []
     with connect() as con:
-        cur = con.cursor()
         con.row_factory = sq.Row
+        cur = con.cursor()
         
         cur.execute('''SELECT * FROM staff''')
         
@@ -40,6 +42,7 @@ def get_all():
                 row['post'],
                 row['salary']
             )
-            worker.show_all()
+            workers.append(worker)
+    return workers
                 
         

@@ -1,5 +1,8 @@
-from database import add_staff, get_all
+from database import add_staff, get_all, create_base
 from models import Workers
+from logic import add_staff_by_user, show_all
+
+create_base()
 while True:
     try:
         print('===Employee Manager===')
@@ -11,6 +14,11 @@ while True:
         print('5.Выйти')
         choice = int(input('Введите номер действия: '))
         
+        if choice == 1:
+            add_staff_by_user()
+        
+        if choice == 3:
+            show_all()
         
     except ValueError:
         print('Ошибка при вводе!')
