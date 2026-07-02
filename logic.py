@@ -20,3 +20,13 @@ def show_all():
     workers = get_all()
     for worker in workers:
         worker.show_all()
+        
+def find_worker():
+    find_name = input('Введите имя сотрудника: ')
+    workers = get_all()
+    for worker in workers:
+        if worker.name == find_name:
+            worker.show_all()
+        else:
+            print('Такого работника нет.')
+        

@@ -1,6 +1,6 @@
 from database import add_staff, get_all, create_base
 from models import Workers
-from logic import add_staff_by_user, show_all
+from logic import add_staff_by_user, show_all, find_worker
 
 create_base()
 while True:
@@ -16,6 +16,9 @@ while True:
         
         if choice == 1:
             add_staff_by_user()
+            
+        if choice == 2:
+            find_worker()
         
         if choice == 3:
             show_all()
