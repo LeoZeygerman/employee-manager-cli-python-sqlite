@@ -24,9 +24,11 @@ def show_all():
 def find_worker():
     find_name = input('Введите имя сотрудника: ')
     workers = get_all()
+    found = False
     for worker in workers:
         if worker.name == find_name:
             worker.show_all()
-        else:
-            print('Такого работника нет.')
+            found = True
+    if not found:
+        print('Такого работника нет.')
         

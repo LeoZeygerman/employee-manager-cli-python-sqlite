@@ -2,9 +2,9 @@ from database import add_staff, get_all, create_base
 from models import Workers
 from logic import add_staff_by_user, show_all, find_worker
 
-create_base()
 while True:
     try:
+        create_base()
         print('===Employee Manager===')
         print('Варианты действий:')
         print('1.Добавить сотрудника')
