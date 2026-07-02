@@ -1,4 +1,5 @@
 import sqlite3 as sq
+from models import Workers
 
 DATABASE = 'staff.db'
 
@@ -18,7 +19,27 @@ def create_base():
             post TEXT,
             salary INTEGER)''')
 
-def add_staff(name, last_name, age, post, salary):
+def add_staff(worker):
     with connect() as con:
         cur = con.cursor()
-        cur.execute('''INSERT INTO staff(name, last_name, age, post, salary) VALUES(?,?,?,?,?)''' (name, last_name, age, post, salary)) 
+        cur.execute('''INSERT INTO staff(name, last_name, age, post, salary) VALUES(?,?,?,?,?)''', (worker.name, worker.last_name, worker.age, worker.post, worker.salary)) 
+
+def get_all():
+    with connect() as con:
+        cur = con.cursor()
+        con.row_factory = sq.Row
+        
+        cur.execute('''SELECT * FROM staff''')
+        
+        for row in cur:
+            worker = Workers(
+                row['staff_id'],
+                row['name'],
+                row['last_name'],
+                row['age'],
+                row['post'],
+                row['salary']
+            )
+            worker.show_all()
+                
+        
