@@ -1,4 +1,4 @@
-from database import add_staff, get_all
+from database import add_staff, get_all, find_by_name
 from models import Workers
 
 def add_staff_by_user():
@@ -22,13 +22,8 @@ def show_all():
         worker.show_all()
         
 def find_worker():
-    find_name = input('Введите имя сотрудника: ')
-    workers = get_all()
-    found = False
-    for worker in workers:
-        if worker.name == find_name:
-            worker.show_all()
-            found = True
-    if not found:
-        print('Такого работника нет.')
+    name = input('Введите имя сотрудника, которого хотите найти: ')
+    worker = find_by_name(name)
+    for workers in worker:
+        workers.show_all()
         

@@ -44,5 +44,25 @@ def get_all():
             )
             workers.append(worker)
     return workers
+
+def find_by_name(name):
+    with connect() as con:
+        con.row_factory = sq.Row
+        cur = con.cursor()
+        
+        cur.execute('''SELECT * FROM staff WHERE LOWER(name) = LOWER(?)''', (name,))
+        workers = []
+        for row in cur:
+            worker = Workers(
+                row['staff_id'],
+                row['name'],
+                row['last_name'],
+                row['age'],
+                row['post'],
+                row['salary']
+            )
+            workers.append(worker)
+        return workers
+    
                 
         
