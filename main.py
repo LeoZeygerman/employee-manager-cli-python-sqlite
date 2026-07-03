@@ -26,6 +26,10 @@ while True:
         elif choice == 4:
             delete_worker()
             
+        elif choice == 5:
+            print('Программа завершена!')
+            break
+            
         
     except ValueError:
         print('Ошибка при вводе!')
