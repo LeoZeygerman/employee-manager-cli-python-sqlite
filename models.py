@@ -10,3 +10,4 @@ class Workers:
     def show_all(self):
         print(f'======\nID: {self.id} | Имя: {self.name} | Фамилия: {self.last_name}\nВозраст: {self.age}\nДолжность: {self.post} | Зарплата: {self.salary}\n=====')
         
+    

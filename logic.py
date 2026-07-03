@@ -1,4 +1,4 @@
-from database import add_staff, get_all, find_by_name
+from database import add_staff, get_all, find_by_name, delete_staff
 from models import Workers
 
 def add_staff_by_user():
@@ -26,4 +26,10 @@ def find_worker():
     worker = find_by_name(name)
     for workers in worker:
         workers.show_all()
+        
+def delete_worker():
+    name = input('Введите имя сотрудника, которого хотите удалить: ')
+    worker = delete_staff(name)
+    for workers in worker:
+        print(f'Сотрудник {workers.name} удален!')
         

@@ -1,6 +1,6 @@
-from database import add_staff, get_all, create_base
+from database import add_staff, get_all, create_base, delete_staff
 from models import Workers
-from logic import add_staff_by_user, show_all, find_worker
+from logic import add_staff_by_user, show_all, find_worker, delete_worker
 
 while True:
     try:
@@ -17,11 +17,15 @@ while True:
         if choice == 1:
             add_staff_by_user()
             
-        if choice == 2:
+        elif choice == 2:
             find_worker()
         
-        if choice == 3:
+        elif choice == 3:
             show_all()
+            
+        elif choice == 4:
+            delete_worker()
+            
         
     except ValueError:
         print('Ошибка при вводе!')

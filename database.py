@@ -64,5 +64,24 @@ def find_by_name(name):
             workers.append(worker)
         return workers
     
+def delete_staff(name):
+    with connect() as con:
+        con.row_factory = sq.Row
+        cur = con.cursor()
+        
+        cur.execute('''DELETE FROM staff WHERE LOWER(name) = LOWER(?)''', (name,))
+        cur.execute('''SELECT * FROM staff WHERE LOWER(name) = LOWER(?)''', (name,))
+        workers = []
+        for row in cur:
+            worker = Workers(
+                row['staff_id'],
+                row['name'],
+                row['last_name'],
+                row['age'],
+                row['post'],
+                row['salary']
+            )
+            workers.append(worker)
+        return workers
                 
         
