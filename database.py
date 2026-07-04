@@ -84,4 +84,40 @@ def delete_staff(name):
             workers.append(worker)
         return workers
                 
-        
+def delete_by_id(staff_id):
+        with connect() as con:
+            con.row_factory = sq.Row
+            cur = con.cursor()
+            
+            cur.execute('''DELETE FROM staff WHERE staff_id = ?''', (staff_id,))
+            cur.execute('''SELECT * FROM staff WHERE staff_id = ?''', (staff_id,))
+        workers = []
+        for row in cur:
+            worker = Workers(
+                row['staff_id'],
+                row['name'],
+                row['last_name'],
+                row['age'],
+                row['post'],
+                row['salary']
+            )
+            workers.append(worker)
+        return workers
+    
+def find_by_id(staff_id):
+    with connect() as con:
+            con.row_factory = sq.Row
+            cur = con.cursor()
+            cur.execute('''SELECT * FROM staff WHERE staff_id = ?''', (staff_id,))
+            workers = []
+            for row in cur:
+                worker = Workers(
+                    row['staff_id'],
+                    row['name'],
+                    row['last_name'],
+                    row['age'],
+                    row['post'],
+                    row['salary']
+                )
+                workers.append(worker)
+            return workers
