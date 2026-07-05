@@ -1,5 +1,5 @@
 from database import add_staff, get_all, find_by_name, delete_staff, delete_by_id, find_by_id
-from second_database import add_fine_bonus
+from second_database import add_fine_bonus, create_base_fine
 from models import Workers, Transactions
 
 def add_staff_by_user():
@@ -41,7 +41,8 @@ def find_worker():
             amount = int(input('Введите размер штрафа: '))
             reason = input('Введите причину штрафа: ')
             worker = add_fine_bonus(name,type,amount,reason)
-            worker.show_history()
+            for workers in worker:
+                workers.show_history()
             
         elif fine_bonus == 2:
             type = 'Бонус'
@@ -49,6 +50,8 @@ def find_worker():
             reason = input('Введите причину бонуса: ')
             worker = add_fine_bonus(name,type,amount,reason)
             worker.show_history()
+            for workers in worker:
+                workers.show_history()
         
         
 def delete_worker():

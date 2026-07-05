@@ -1,10 +1,12 @@
 from database import add_staff, get_all, create_base, delete_staff
+from second_database import create_base_fine
 from models import Workers
 from logic import add_staff_by_user, show_all, find_worker, delete_worker
 
 while True:
     try:
         create_base()
+        create_base_fine()
         print('===Employee Manager===')
         print('Варианты действий:')
         print('1.Добавить сотрудника')
