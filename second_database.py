@@ -23,7 +23,6 @@ def add_fine_bonus(worker_id, type, amount, reason):
         cur.execute('''INSERT INTO fine_bonus VALUES(?,?,?,?)'''(worker_id,type,amount,reason))
         cur.execute('''SELECT staff.name, fine_bonus.type, fine_bonus.amount, fine_bonus.reason FROM fine_bonus JOIN staff ON fine_bonus.staff_id = staff.staff_id''')
         
-        
         workers = []
         for row in cur:
             worker = Transactions(
