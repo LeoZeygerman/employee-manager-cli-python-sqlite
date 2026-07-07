@@ -19,4 +19,4 @@ class Transactions:
         self.reason = reason
         
     def show_history(self):
-        print(f'=====\nИмя: {self.name}\nТип: {self.amount}\nРазмер: {self.amount}\nПричина: {self.reason}\n=====')
+        print(f'=====\nИмя: {self.name}\nТип: {self.type}\nРазмер: {self.amount}\nПричина: {self.reason}\n=====')

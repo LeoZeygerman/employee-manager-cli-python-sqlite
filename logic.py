@@ -1,5 +1,5 @@
-from database import add_staff, get_all, find_by_name, delete_staff, delete_by_id, find_by_id
-from second_database import add_fine_bonus, create_base_fine
+from database import add_staff, get_all, find_by_name, delete_staff, delete_by_id, find_by_id, get_total
+from second_database import add_fine_bonus, create_base_fine, show_history
 from models import Workers, Transactions
 
 def add_staff_by_user():
@@ -30,28 +30,36 @@ def find_worker():
     print('Выберите, что хотите сделать: ')
     print('1. Добавить штраф или бонус.')
     print('2. Посмотреть историю бонусов и штрафов.')
-    print('3. Выйти')
+    print('3. Узнать финальную выплату сотруднику')
+    print('4. Выйти')
     choice = int(input('Ваш выбор: '))
     if choice == 1:
         print('1.Добавить штраф')
         print('2.Добавить бонус')
         fine_bonus = int(input('Ваш выбор: '))
         if fine_bonus == 1:
-            type = 'Штраф'
+            type = 'fine'
             amount = int(input('Введите размер штрафа: '))
             reason = input('Введите причину штрафа: ')
             worker = add_fine_bonus(name,type,amount,reason)
-            for workers in worker:
-                workers.show_history()
+            print('Штраф успешно добавлен!')
+            
             
         elif fine_bonus == 2:
-            type = 'Бонус'
+            type = 'bonus'
             amount = int(input('Введите размер бонуса: '))
             reason = input('Введите причину бонуса: ')
             worker = add_fine_bonus(name,type,amount,reason)
-            worker.show_history()
-            for workers in worker:
+            print('Бонус успешно добавлен!')
+        
+    elif choice == 2:
+        worker = show_history()
+        for workers in worker:
                 workers.show_history()
+        
+    elif choice == 3:    
+        salary = get_total(name)
+        print(f'Финальная выплата: {salary}')
         
         
 def delete_worker():

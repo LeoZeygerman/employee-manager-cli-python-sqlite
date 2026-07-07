@@ -33,3 +33,21 @@ def add_fine_bonus(worker_id, type, amount, reason):
             )
             workers.append(worker)
         return workers
+    
+def show_history():
+    with connect() as con:
+        con.row_factory = sq.Row
+        cur = con.cursor()
+        cur.execute('''SELECT staff.name, fine_bonus.type, fine_bonus.amount, fine_bonus.reason FROM fine_bonus JOIN staff ON fine_bonus.staff_id = staff.staff_id''')
+        
+        workers = []
+        for row in cur:
+            worker = Transactions(
+                row['name'],
+                row['type'],
+                row['amount'],
+                row['reason']
+            )
+            workers.append(worker)
+        return workers
+    

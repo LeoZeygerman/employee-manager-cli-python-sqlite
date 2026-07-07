@@ -121,3 +121,22 @@ def find_by_id(staff_id):
                 )
                 workers.append(worker)
             return workers
+        
+def get_total(staff_id):
+    with connect() as con:
+            con.row_factory = sq.Row
+            cur = con.cursor()
+            
+            cur.execute('''SELECT salary FROM staff WHERE staff_id = ?''',(staff_id,))
+            salary = cur.fetchone()['salary']
+            cur.execute('''SELECT SUM(amount) FROM fine_bonus WHERE staff_id = ? AND type =  'fine' ''',(staff_id,))
+            fine = cur.fetchone()[0]
+            fine = fine or 0
+            cur.execute('''SELECT SUM(amount) FROM fine_bonus WHERE staff_id = ? AND type = 'bonus' ''',(staff_id,))
+            bonus = cur.fetchone()[0]
+            bonus = bonus or 0
+            total = salary + bonus - fine
+            
+    return total
+            
+    

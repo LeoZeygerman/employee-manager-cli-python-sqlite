@@ -30,7 +30,7 @@ while True:
             
         elif choice == 5:
             print('Программа завершена!')
-            break
+            exit()
             
         
     except ValueError:
